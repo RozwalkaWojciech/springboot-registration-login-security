@@ -1,12 +1,11 @@
 package javer.springbootregistrationloginsecurity.web.dto;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserRegistrationDto {
 
     private String firstName;
