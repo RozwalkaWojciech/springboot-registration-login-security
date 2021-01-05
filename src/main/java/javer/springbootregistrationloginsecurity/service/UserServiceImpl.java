@@ -4,7 +4,7 @@ import javer.springbootregistrationloginsecurity.model.Role;
 import javer.springbootregistrationloginsecurity.model.User;
 import javer.springbootregistrationloginsecurity.repository.UserRepository;
 import javer.springbootregistrationloginsecurity.web.dto.UserRegistrationDto;
-import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,12 +17,16 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
     private final BCryptPasswordEncoder passwordEncoder;
+
+    public UserServiceImpl(UserRepository userRepository, @Lazy BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public User save(UserRegistrationDto userRegistrationDto) {
