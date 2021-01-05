@@ -5,6 +5,8 @@ import javer.springbootregistrationloginsecurity.model.User;
 import javer.springbootregistrationloginsecurity.repository.UserRepository;
 import javer.springbootregistrationloginsecurity.web.dto.UserRegistrationDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -25,5 +27,10 @@ public class UserServiceImpl implements UserService {
                 .roles(Arrays.asList(Role.builder().name("ROLE_USER").build()))
                 .build();
         return userRepository.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        return null;
     }
 }
